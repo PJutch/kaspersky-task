@@ -1,15 +1,8 @@
-from dataclasses import dataclass
+from count_words.dto import WordCounts, OneWordCounts
 import regex
 
-@dataclass
-class OneWordStatistics:
-    total_count: int
-    counts_by_line: list[int]
-
-WordStatistics = dict[str, OneWordStatistics]
-
-def count_words(text: str) -> WordStatistics:
-    results: WordStatistics = {}
+def count_words(text: str) -> WordCounts:
+    results: WordCounts = {}
 
     # Не уверен надо ли по ТЗ, но хочется не учитывать знаки препинания
     # Поэтому регулярка вместо split()
@@ -21,7 +14,7 @@ def count_words(text: str) -> WordStatistics:
         for word_with_case in words:
             word = word_with_case.lower()
 
-            results.setdefault(word, OneWordStatistics(0, [0] * len(lines)))
+            results.setdefault(word, OneWordCounts(0, [0] * len(lines)))
             
             results[word].total_count += 1
             results[word].counts_by_line[line_number] += 1

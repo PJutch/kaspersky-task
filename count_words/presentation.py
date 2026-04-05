@@ -1,8 +1,8 @@
-from count_words import WordStatistics
+from count_words.services import WordCounts
 import xlsxwriter
 import io
 
-def word_counts_to_xlsx(data: WordStatistics) -> bytes:
+def word_counts_to_xlsx(data: WordCounts) -> bytes:
     output = io.BytesIO()
     workbook = xlsxwriter.Workbook(output)
     worksheet = workbook.add_worksheet()
