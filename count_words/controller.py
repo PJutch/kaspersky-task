@@ -9,13 +9,12 @@ router = APIRouter(prefix="/public/report")
 
 @router.post("/export")
 async def test(file: UploadFile = File(...)):
-    binary = await file.read()
-    text = binary.decode('utf-8')
+    text_io = io.TextIOWrapper(file.file, encoding='utf-8')
 
-    word_counts = await asyncio.to_thread(count_words, text)
+    word_counts = await asyncio.to_thread(count_words, text_io)
     xlsx = await asyncio.to_thread(word_counts_to_xlsx, word_counts)
 
     return StreamingResponse(
         io.BytesIO(xlsx),
         media_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-        headers={"Content-Disposition": "attachment; filename=async_export.xlsx"} )
+        headers={"Content-Disposition": "attachment; filename=report.xlsx"} )
