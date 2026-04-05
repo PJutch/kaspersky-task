@@ -18,7 +18,9 @@ def count_words(text: str) -> WordStatistics:
     lines = text.splitlines()
     for line_number, line in enumerate(lines):
         words = word_regex.findall(line)
-        for word in words:
+        for word_with_case in words:
+            word = word_with_case.lower()
+
             results.setdefault(word, OneWordStatistics(0, [0] * len(lines)))
             
             results[word].total_count += 1
