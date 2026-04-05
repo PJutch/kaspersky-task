@@ -1,0 +1,8 @@
+name: kaspersky-task
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - fastapi=0.135.3
+  - xlsxwriter=3.2.9
