@@ -1,0 +1,9 @@
+[project]
+name = "kaspersky-task"
+version = "0.1.0"
+readme = "README.md"
+
+requires-python = ">=3.12"
+
+[project.urls]
+Repository = "https://github.com/PJutch/kaspersky-task.git"
