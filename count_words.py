@@ -6,8 +6,10 @@ class OneWordStatistics:
     total_count: int
     counts_by_line: list[int]
 
-def count_words(text: str) -> dict[str, OneWordStatistics]:
-    results: dict[str, OneWordStatistics] = {}
+WordStatistics = dict[str, OneWordStatistics]
+
+def count_words(text: str) -> WordStatistics:
+    results: WordStatistics = {}
 
     # Не уверен надо ли по ТЗ, но хочется не учитывать знаки препинания
     # Поэтому регулярка вместо split()
